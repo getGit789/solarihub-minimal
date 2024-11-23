@@ -114,6 +114,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
                 setDate(selectedDate);
               }
             }}
+            placeholder="Click to select a date"
           />
         </div>
 
@@ -136,7 +137,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
 
         <Button
           type="submit"
-          className={`w-full ${isFormValid ? 'bg-secondary-dark hover:bg-secondary-dark/90' : 'bg-gray-300 cursor-not-allowed'}`}
+          className={`w-full transition-colors ${isFormValid ? 'bg-secondary-dark hover:bg-secondary-dark/90 text-white' : 'bg-gray-300 cursor-not-allowed'}`}
           disabled={!isFormValid}
         >
           Confirm Booking
