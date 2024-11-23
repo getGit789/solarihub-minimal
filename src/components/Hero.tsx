@@ -7,8 +7,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { BookingModal } from "./BookingModal";
+import { useState } from "react";
 
 export const Hero = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden section-padding">
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-soft to-primary-accent opacity-50" />
@@ -23,7 +27,7 @@ export const Hero = () => {
           Discover your radiant glow with our professional tanning and skin rejuvenation services. Specially designed for ladies who appreciate quality and care.
         </p>
         
-        <Dialog>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button size="lg" className="bg-secondary-dark hover:bg-secondary-dark/90 text-white">
               Book Your Session Now
@@ -33,15 +37,7 @@ export const Hero = () => {
             <DialogHeader>
               <DialogTitle>Schedule Your Appointment</DialogTitle>
             </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <iframe
-                src="https://calendly.com/your-account"
-                width="100%"
-                height="600"
-                frameBorder="0"
-                title="Appointment Booking Calendar"
-              ></iframe>
-            </div>
+            <BookingModal isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
           </DialogContent>
         </Dialog>
       </div>

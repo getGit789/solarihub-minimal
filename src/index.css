@@ -30,3 +30,32 @@
 .section-padding {
   @apply py-16 px-4 md:py-24 md:px-8;
 }
+
+/* Flatpickr custom styles */
+.flatpickr-calendar {
+  @apply bg-white rounded-lg shadow-lg border border-gray-200;
+}
+
+.flatpickr-day {
+  @apply hover:bg-secondary-dark hover:text-white rounded-md;
+}
+
+.flatpickr-day.selected {
+  @apply bg-secondary-dark text-white;
+}
+
+.flatpickr-months .flatpickr-month {
+  @apply bg-white text-gray-800;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  @apply bg-white text-gray-800;
+}
+
+.flatpickr-weekdays {
+  @apply bg-white;
+}
+
+.flatpickr-weekday {
+  @apply text-gray-600;
+}
