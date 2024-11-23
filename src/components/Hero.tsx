@@ -14,7 +14,7 @@ export const Hero = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden section-padding">
+    <div className="relative min-h-[90vh] mt-20 md:mt-0 flex items-center justify-center overflow-hidden section-padding border-2 border-secondary-dark rounded-xl">
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-soft to-primary-accent opacity-50" />
       <div className="relative z-10 text-center animate-fade-up">
         <div className="flex justify-center mb-6">
