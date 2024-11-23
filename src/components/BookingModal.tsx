@@ -28,7 +28,6 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
     e.preventDefault();
     
     try {
-      // Replace these with your actual EmailJS credentials
       await emailjs.send(
         'YOUR_SERVICE_ID',
         'YOUR_TEMPLATE_ID',
@@ -36,7 +35,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
           service,
           date: date?.toLocaleDateString(),
           time,
-          to_email: 'your-email@example.com' // Replace with your email
+          to_email: 'your-email@example.com'
         },
         'YOUR_PUBLIC_KEY'
       );
@@ -55,6 +54,8 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
       });
     }
   };
+
+  const isFormValid = service !== "" && date !== null && time !== "";
 
   return (
     <div className="space-y-6 p-6">
@@ -106,7 +107,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
               dateFormat: "Y-m-d",
               disable: [
                 function(date) {
-                  return (date.getDay() === 0); // Disable Sundays
+                  return (date.getDay() === 0);
                 }
               ],
               onChange: ([selectedDate]) => {
@@ -135,8 +136,8 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
 
         <Button
           type="submit"
-          className="w-full bg-secondary-dark hover:bg-secondary-dark/90"
-          disabled={!service || !date || !time}
+          className={`w-full ${isFormValid ? 'bg-secondary-dark hover:bg-secondary-dark/90' : 'bg-gray-300 cursor-not-allowed'}`}
+          disabled={!isFormValid}
         >
           Confirm Booking
         </Button>
