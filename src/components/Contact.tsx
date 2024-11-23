@@ -9,7 +9,7 @@ export const Contact = () => {
   ];
 
   return (
-    <div className="section-padding">
+    <div id="contact" className="section-padding">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-12">Visit Us</h2>
         <div className="grid md:grid-cols-2 gap-8">
