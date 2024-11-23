@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import emailjs from '@emailjs/browser';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -26,20 +27,33 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Here you would typically send this to your backend
-    const bookingData = {
-      service,
-      date: date?.toISOString(),
-      time,
-    };
+    try {
+      // Replace these with your actual EmailJS credentials
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          service,
+          date: date?.toLocaleDateString(),
+          time,
+          to_email: 'your-email@example.com' // Replace with your email
+        },
+        'YOUR_PUBLIC_KEY'
+      );
 
-    // For now, we'll just show a success toast
-    toast({
-      title: "Booking Submitted!",
-      description: "We'll contact you shortly to confirm your appointment.",
-    });
+      toast({
+        title: "Booking Submitted!",
+        description: "We'll contact you shortly to confirm your appointment.",
+      });
 
-    onClose();
+      onClose();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was an error submitting your booking. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -60,7 +74,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
               />
               <Label
                 htmlFor="solarijum"
-                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-white p-4 hover:bg-gray-50 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-white p-4 hover:bg-gray-50 peer-data-[state=checked]:border-secondary-dark peer-data-[state=checked]:bg-secondary-dark peer-data-[state=checked]:text-white [&:has([data-state=checked])]:border-secondary-dark [&:has([data-state=checked])]:bg-secondary-dark [&:has([data-state=checked])]:text-white"
               >
                 <span>Solarijum</span>
               </Label>
@@ -73,7 +87,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
               />
               <Label
                 htmlFor="kolarijum"
-                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-white p-4 hover:bg-gray-50 peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-white p-4 hover:bg-gray-50 peer-data-[state=checked]:border-secondary-dark peer-data-[state=checked]:bg-secondary-dark peer-data-[state=checked]:text-white [&:has([data-state=checked])]:border-secondary-dark [&:has([data-state=checked])]:bg-secondary-dark [&:has([data-state=checked])]:text-white"
               >
                 <span>Kolarijum</span>
               </Label>
@@ -85,8 +99,8 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
           <Label>Select Date</Label>
           <Flatpickr
             value={date}
-            onChange={([date]) => setDate(date)}
-            className="w-full px-3 py-2 border rounded-md"
+            onChange={([selectedDate]) => setDate(selectedDate)}
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-secondary-dark focus:border-transparent"
             options={{
               minDate: "today",
               dateFormat: "Y-m-d",
@@ -94,7 +108,10 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
                 function(date) {
                   return (date.getDay() === 0); // Disable Sundays
                 }
-              ]
+              ],
+              onChange: ([selectedDate]) => {
+                setDate(selectedDate);
+              }
             }}
           />
         </div>
@@ -107,7 +124,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
                 key={t}
                 type="button"
                 variant={time === t ? "default" : "outline"}
-                className="w-full"
+                className={`w-full ${time === t ? 'bg-secondary-dark text-white' : ''}`}
                 onClick={() => setTime(t)}
               >
                 {t}
