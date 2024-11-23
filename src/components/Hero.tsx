@@ -17,16 +17,16 @@ export const Hero = () => {
           <Sun className="w-16 h-16 text-secondary-dark" />
         </div>
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Premium Solarijum & Kolarijum
+          Premium Solarijum & Kolarijum Zrenjanin
         </h1>
         <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-8">
-          Experience the perfect blend of relaxation and beauty with our professional tanning services
+          Discover your radiant glow with our professional tanning and skin rejuvenation services. Specially designed for ladies who appreciate quality and care.
         </p>
         
         <Dialog>
           <DialogTrigger asChild>
             <Button size="lg" className="bg-secondary-dark hover:bg-secondary-dark/90 text-white">
-              Book Now
+              Book Your Session Now
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
@@ -39,6 +39,7 @@ export const Hero = () => {
                 width="100%"
                 height="600"
                 frameBorder="0"
+                title="Appointment Booking Calendar"
               ></iframe>
             </div>
           </DialogContent>
