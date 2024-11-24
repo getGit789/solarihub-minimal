@@ -8,11 +8,14 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { X } from "lucide-react";
+import { Database } from "@/integrations/supabase/types";
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+type Booking = Database['public']['Tables']['bookings']['Insert'];
 
 export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   const [service, setService] = useState<string>("");
@@ -51,16 +54,16 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
       return;
     }
 
+    const booking: Booking = {
+      user_id: user.id,
+      service,
+      booking_date: date.toISOString().split('T')[0],
+      booking_time: time
+    };
+
     const { error: bookingError } = await supabase
       .from('bookings')
-      .insert([
-        {
-          user_id: user.id,
-          service,
-          booking_date: date.toISOString().split('T')[0],
-          booking_time: time
-        }
-      ]);
+      .insert([booking]);
 
     if (bookingError) {
       toast({
