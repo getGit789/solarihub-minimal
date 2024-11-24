@@ -13,7 +13,7 @@ export const Contact = () => {
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-12">Visit Us</h2>
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="glass p-8 [border:3px_solid_#9b87f5] [border-radius:20px_70px_20px_70px]">
+          <Card className="glass p-8 [border:3px_solid_#9c8ee4] [border-radius:72%_28%_82%_18%_/_18%_82%_18%_82%]">
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-4">Business Hours</h3>
               <div className="space-y-2">
@@ -32,7 +32,7 @@ export const Contact = () => {
             </div>
           </Card>
 
-          <Card className="glass p-8 [border:3px_solid_#9b87f5] [border-radius:70px_20px_70px_20px]">
+          <Card className="glass p-8 [border:3px_solid_#9c8ee4] [border-radius:28%_72%_18%_82%_/_82%_18%_82%_18%]">
             <div className="flex flex-col items-center justify-center h-full">
               <MapPin className="w-12 h-12 text-secondary-dark mb-4" />
               <h3 className="text-2xl font-semibold mb-2">Location Coming Soon</h3>
