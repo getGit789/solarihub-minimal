@@ -146,21 +146,24 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
 
             <div className="space-y-2">
               <Label>Select Date</Label>
-              <Flatpickr
-                value={date}
-                onChange={([selectedDate]) => setDate(selectedDate)}
-                options={{
-                  minDate: "today",
-                  dateFormat: "Y-m-d",
-                  disable: [
-                    function(date) {
-                      return (date.getDay() === 0);
-                    }
-                  ],
-                  enableTime: false
-                }}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#9c8ee4] focus:border-transparent"
-              />
+              <div className="relative">
+                <Flatpickr
+                  value={date}
+                  onChange={([selectedDate]) => setDate(selectedDate)}
+                  options={{
+                    minDate: "today",
+                    dateFormat: "Y-m-d",
+                    disable: [
+                      function(date) {
+                        return (date.getDay() === 0);
+                      }
+                    ],
+                    enableTime: false,
+                    static: true
+                  }}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#9c8ee4] focus:border-transparent"
+                />
+              </div>
             </div>
 
             <div className="space-y-2">
