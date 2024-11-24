@@ -31,31 +31,23 @@
   @apply py-16 px-4 md:py-24 md:px-8;
 }
 
-/* Flatpickr custom styles */
-.flatpickr-calendar {
-  @apply bg-white rounded-lg shadow-lg border border-gray-200;
+.section-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
-.flatpickr-day {
-  @apply hover:bg-secondary-dark hover:text-white rounded-md transition-colors;
-}
-
-.flatpickr-day.selected {
-  @apply bg-secondary-dark text-white font-semibold;
-}
-
-.flatpickr-months .flatpickr-month {
-  @apply bg-white text-gray-800;
-}
-
-.flatpickr-current-month .flatpickr-monthDropdown-months {
-  @apply bg-white text-gray-800;
-}
-
-.flatpickr-weekdays {
-  @apply bg-white;
-}
-
-.flatpickr-weekday {
-  @apply text-gray-600;
+.section {
+  padding: 2px;
+  border: 4px solid transparent;
+  border-radius: 10px;
+  -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60"><path fill="white" d="M0,30 Q30,60 60,30 T120,30 V60 H0 Z"/></svg>');
+  -webkit-mask-repeat: repeat-x;
+  -webkit-mask-size: cover;
+  mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60"><path fill="white" d="M0,30 Q30,60 60,30 T120,30 V60 H0 Z"/></svg>');
+  mask-repeat: repeat-x;
+  mask-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
 }

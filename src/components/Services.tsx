@@ -20,16 +20,26 @@ export const Services = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Our Premium Services in Zrenjanin
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="section-container">
           {services.map((service) => (
-            <Card 
+            <div 
               key={service.title} 
-              className="glass p-8 hover:scale-105 transition-transform [border:3px_solid_#9b87f5] [border-radius:70px_20px_70px_20px] relative"
+              className="section bg-white relative"
+              style={{
+                backgroundColor: '#9c8ee4',
+                flex: 1,
+                minWidth: '280px',
+                maxWidth: '500px'
+              }}
             >
-              <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
-              <p className="text-sm text-gray-500">Session Duration: {service.duration}</p>
-            </Card>
+              <div className="bg-white p-8 rounded-lg">
+                <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <p className="text-sm text-gray-500">
+                  <strong>Session Duration:</strong> {service.duration}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
