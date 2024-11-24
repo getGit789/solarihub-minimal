@@ -24,7 +24,7 @@ export const Services = () => {
           {services.map((service) => (
             <Card 
               key={service.title} 
-              className="glass p-8 hover:scale-105 transition-transform [border:3px_solid_#9c8ee4] [border-radius:88%_12%_72%_28%_/_28%_72%_28%_72%] relative"
+              className="glass p-8 hover:scale-105 transition-transform [border:3px_solid_#9b87f5] [border-radius:70px_20px_70px_20px] relative"
             >
               <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
               <p className="text-gray-600 mb-4">{service.description}</p>
