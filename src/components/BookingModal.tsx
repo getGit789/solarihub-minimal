@@ -40,46 +40,56 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
       return;
     }
 
-    const {
-      data: { user },
-      error: authError
-    } = await supabase.auth.getUser();
+    try {
+      const {
+        data: { user },
+        error: authError
+      } = await supabase.auth.getUser();
 
-    if (authError || !user) {
+      if (authError || !user) {
+        toast({
+          title: "Error",
+          description: "Please sign in to make a booking",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      const booking: Booking = {
+        user_id: user.id,
+        service,
+        booking_date: date.toISOString().split('T')[0],
+        booking_time: time
+      };
+
+      const { error: bookingError } = await supabase
+        .from('bookings')
+        .insert([booking]);
+
+      if (bookingError) {
+        console.error('Booking error:', bookingError);
+        toast({
+          title: "Error",
+          description: "There was an error making your booking. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      toast({
+        title: "Success!",
+        description: "Your booking has been submitted. We'll contact you shortly to confirm.",
+      });
+
+      onClose();
+    } catch (error) {
+      console.error('Error:', error);
       toast({
         title: "Error",
-        description: "Please sign in to make a booking",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive"
       });
-      return;
     }
-
-    const booking: Booking = {
-      user_id: user.id,
-      service,
-      booking_date: date.toISOString().split('T')[0],
-      booking_time: time
-    };
-
-    const { error: bookingError } = await supabase
-      .from('bookings')
-      .insert([booking]);
-
-    if (bookingError) {
-      toast({
-        title: "Error",
-        description: "There was an error making your booking. Please try again.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    toast({
-      title: "Success!",
-      description: "Your booking has been submitted. We'll contact you shortly to confirm.",
-    });
-
-    onClose();
   };
 
   if (!isOpen) return null;
@@ -139,7 +149,6 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
               <Flatpickr
                 value={date}
                 onChange={([selectedDate]) => setDate(selectedDate)}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#9c8ee4] focus:border-transparent"
                 options={{
                   minDate: "today",
                   dateFormat: "Y-m-d",
@@ -147,8 +156,10 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
                     function(date) {
                       return (date.getDay() === 0);
                     }
-                  ]
+                  ],
+                  enableTime: false
                 }}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#9c8ee4] focus:border-transparent"
               />
             </div>
 
