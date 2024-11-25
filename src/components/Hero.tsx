@@ -17,13 +17,13 @@ export const Hero = () => {
     <div className="relative min-h-[90vh] mt-20 md:mt-0 flex items-center justify-center overflow-hidden section-padding">
       {/* Background image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&q=80")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80")',
         }}
       />
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-soft to-primary-accent opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-soft to-primary-accent opacity-40" />
       <div className="relative z-10 text-center animate-fade-up">
         <div className="flex justify-center mb-6">
           <Sun className="w-16 h-16 text-secondary-dark" />
